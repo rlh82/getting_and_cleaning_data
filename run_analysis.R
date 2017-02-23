@@ -12,11 +12,8 @@ colnames(testData)<-features
 colnames(trainData)<-features
 
 # Then, we bring in the activity tags to each dataset
-trainActivities<-readLines("./UCI HAR Dataset/train/y_train.txt")
-testActivities<-readLines("./UCI HAR Dataset/test/y_test.txt")
-
-testData$activities<-testActivities
-trainData$activities<-trainActivities
+trainData$activities<-as.factor(readLines("./UCI HAR Dataset/train/y_train.txt"))
+testData$activities<-as.factor(readLines("./UCI HAR Dataset/test/y_test.txt"))
 
 # Next, bring in the subject IDs into each data set, first by introducting them as vectors,
 # then by adding them to a "subjectid" variable to each dataset
@@ -24,11 +21,8 @@ trainData$activities<-trainActivities
 # but since we won't transform subjectid after we bring it in, we can just bring
 # it in as a factor instead of waiting until later
 
-subjtrain<-readLines("./UCI HAR Dataset/train/subject_train.txt")
-subjtest<-readLines("./UCI HAR Dataset/test/subject_test.txt")
-
-trainData$subjectid <-as.factor(subjtrain)
-testData$subjectid <-as.factor(subjtest)
+trainData$subjectid<-as.factor(readLines("./UCI HAR Dataset/train/subject_train.txt"))
+testData$subjectid<-as.factor(readLines("./UCI HAR Dataset/test/subject_test.txt"))
 
 # and then combine the datasets
 allData<-rbind(trainData,testData)
@@ -69,8 +63,7 @@ allData$activities<-tolower(allData$activities)
 allData$activities<-factor(allData$activities)
 
 # Then we'll clean up all objects exept for allData, just to keep our workspace clean
-rm(list=c("features","testActivities","testData",
-          "trainActivities","trainData","subjtrain","subjtest","activities"))
+rm(list=c("features","testData","trainData","activities"))
 
 # next we have to rename the measurement variables to comply with tidy data standards
 
