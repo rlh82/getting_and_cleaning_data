@@ -1,26 +1,19 @@
 # start by loading in the dplyr package, as it'll be needed later on
 require("dplyr",quietly = TRUE)
 
-#if(!file.exists("uci_data")) {
-#  dir.create("uci_data")
-#  }
-#URL="https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2uci%20HAR%20Dataset.zip"
-#download.file(URL,"./uci_data/uci.zip")
-#unzip("./uci_data/uci.zip",exdir = "./uci_data")
-
 # The "features" file which contains all variable names fo future steps
-features<-read.table("./uci_data/UCI HAR Dataset/features.txt")
+features<-read.table("./UCI HAR Dataset/features.txt")
 features<-features$V2
 
 # Next, we will load the 'test' and the 'train' datasets and apply the variable names from 'features'
-testData<-read.table("./uci_data/UCI HAR Dataset/test/X_test.txt")
-trainData<-read.table("./uci_data/UCI HAR Dataset/train/X_train.txt")
+testData<-read.table("./UCI HAR Dataset/test/X_test.txt")
+trainData<-read.table("./UCI HAR Dataset/train/X_train.txt")
 colnames(testData)<-features
 colnames(trainData)<-features
 
 # Then, we bring in the activity tags to each dataset
-trainActivities<-readLines("./uci_data/UCI HAR Dataset/train/y_train.txt")
-testActivities<-readLines("./uci_data/UCI HAR Dataset/test/y_test.txt")
+trainActivities<-readLines("./UCI HAR Dataset/train/y_train.txt")
+testActivities<-readLines("./UCI HAR Dataset/test/y_test.txt")
 
 testData$activities<-testActivities
 trainData$activities<-trainActivities
@@ -31,8 +24,8 @@ trainData$activities<-trainActivities
 # but since we won't transform subjectid after we bring it in, we can just bring
 # it in as a factor instead of waiting until later
 
-subjtrain<-readLines("./uci_data/UCI HAR Dataset/train/subject_train.txt")
-subjtest<-readLines("./uci_data/UCI HAR Dataset/test/subject_test.txt")
+subjtrain<-readLines("./UCI HAR Dataset/train/subject_train.txt")
+subjtest<-readLines("./UCI HAR Dataset/test/subject_test.txt")
 
 trainData$subjectid <-as.factor(subjtrain)
 testData$subjectid <-as.factor(subjtest)
@@ -60,7 +53,7 @@ allData<-allData[,grep("mean\\(\\)$|std\\(\\)$|subject|activities",colnames(allD
 # then get rid of the underscore and lowercase everything in case we ever want to use these
 # activity descriptions as variables in a tidy dataset
 
-activities<-readLines("./uci_data/UCI HAR Dataset/activity_labels.txt")
+activities<-readLines("./UCI HAR Dataset/activity_labels.txt")
 activities<-strsplit(activities," ")
 activities<-sapply(activities,"[",2)
 allData$activities<-sub("1",activities[1],allData$activities)
