@@ -5,11 +5,15 @@ The oringal dataset has 561 variables. Of those, I retained 18, each related to 
 Also inluded are two additional variables that indicate the subject being observed and the activity being observed. This results in 20 variables.
 
 1. subjectid
+
 Indicates the subject being oserved
-there are 30 unique subjects
+
+There are 30 unique subjects
 
 2. activities
+
 Indicates the activity observed
+
 There are 6 unique activities: laying, sitting, standing, walking, walkingdownstairs, walkingupstairs
 
 NOTE: for variables 3-20, the variable name contains is converted to plain English, so each should be self explanatory. You will see references to "magnitude" and "jerk" show up repeatedly. 
