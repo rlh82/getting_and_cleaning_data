@@ -32,7 +32,7 @@ Source: https://thoughtfulbloke.wordpress.com/2015/09/09/getting-and-cleaning-th
 ## Script Detail Walkthrough
 Note: A VERSION OF THESE DETAILS CAN ALSO BE FOUND AS COMMENTS DIRECTLY WITHIN THE SCRIPT
 
-1. I start off with "require("dplyr",quietly = TRUE" so that future calls to this package work correctly
+1. I start off with "require("dplyr",quietly = TRUE)" so that future calls to this package work correctly
 2. I then read in the 'features' file, which will contain all measurement variables in the two datasets. I played around with both read.table and readLines to get this info, and ultimately I found read.table easier for getting ONLY the variable names and not the position numbers (using features<-features$V2)
 3. Next I loaded in the large datasets: X_test.txt and X_train.txt
 4. I chose to immediately add the variables defined in features to each dataset
