@@ -1,33 +1,29 @@
-# start by loading in the dplyr package, as it'll be needed later on
+# 1. Start by loading in the dplyr package, as it'll be needed later on
 require("dplyr",quietly = TRUE)
 
-# The "features" file which contains all variable names fo future steps
+# 2. The "features" file which contains all variable names fo future steps
 features<-read.table("./UCI HAR Dataset/features.txt")
 features<-features$V2
 
-# Next, we will load the 'test' and the 'train' datasets and apply the variable names from 'features'
+# 3 & 4. Next, we will load the 'test' and the 'train' datasets and apply the variable names from 'features'
 testData<-read.table("./UCI HAR Dataset/test/X_test.txt")
 trainData<-read.table("./UCI HAR Dataset/train/X_train.txt")
 colnames(testData)<-features
 colnames(trainData)<-features
 
-# Then, we bring in the activity tags to each dataset
+# 5. Then, we bring in the activity tags to each dataset
 trainData$activities<-as.factor(readLines("./UCI HAR Dataset/train/y_train.txt"))
 testData$activities<-as.factor(readLines("./UCI HAR Dataset/test/y_test.txt"))
 
-# Next, bring in the subject IDs into each data set, first by introducting them as vectors,
-# then by adding them to a "subjectid" variable to each dataset
-# note: activities and subjectid will both need to eventually be factors in order to group_by
-# but since we won't transform subjectid after we bring it in, we can just bring
-# it in as a factor instead of waiting until later
+# 6. Then we do the same for the "subject" information for both the test and train data
 
 trainData$subjectid<-as.factor(readLines("./UCI HAR Dataset/train/subject_train.txt"))
 testData$subjectid<-as.factor(readLines("./UCI HAR Dataset/test/subject_test.txt"))
 
-# and then combine the datasets
+# 7. and then combine the datasets
 allData<-rbind(trainData,testData)
 
-# According to "features_info.txt", the XYZ measurements for each read has been combined into
+# 8. According to "features_info.txt", the XYZ measurements for each read has been combined into
 # magnitude variables. Therefore, to get the mean and std for all measurements, all we need  
 # are the mean and std of the magnitude data and not each XYZ mean & std variable.
 #
@@ -42,7 +38,7 @@ allData<-rbind(trainData,testData)
 allData<-allData[,grep("mean\\(\\)$|std\\(\\)$|subject|activities",colnames(allData))]
 
 
-# Pull the activity descriptors, remove numeric prefixes (since they're not descriptive), 
+# 9. Pull the activity descriptors, remove numeric prefixes (since they're not descriptive), 
 # and then apply them to the activity variable in allData
 # then get rid of the underscore and lowercase everything in case we ever want to use these
 # activity descriptions as variables in a tidy dataset
@@ -59,13 +55,13 @@ allData$activities<-sub("6",activities[6],allData$activities)
 allData$activities<-gsub("_","",allData$activities)
 allData$activities<-tolower(allData$activities)
 
-# Finish off by transforming this variable into a factor so we can group_by later on
+# 10. Finish off by transforming this variable into a factor so we can group_by later on
 allData$activities<-factor(allData$activities)
 
-# Then we'll clean up all objects exept for allData, just to keep our workspace clean
+# 11. Then we'll clean up all objects exept for allData, just to keep our workspace clean
 rm(list=c("features","testData","trainData","activities"))
 
-# next we have to rename the measurement variables to comply with tidy data standards
+# 12. Next we have to rename the measurement variables to comply with tidy data standards
 
 colnames(allData)<-sub("BodyBody","Body",colnames(allData))
 colnames(allData)<-sub("tBodyAcc","timedbodilyacceleration",colnames(allData))
@@ -77,11 +73,11 @@ colnames(allData)<-sub("Mag-","magnitude",colnames(allData))
 colnames(allData)<-sub("Jerk","jerk",colnames(allData))
 colnames(allData)<-sub("\\()","",colnames(allData))
 
-# and then create a new tidy dataset called allMeans by passing allData into a group_by
+# 13. and then create a new tidy dataset called allMeans by passing allData into a group_by
 # function and a summarise_each function
 
 allMeans<-allData %>% group_by(subjectid,activities) %>% summarize_each(funs(mean))
 
-# and then we output the appropriate file
+# 14. and then we output the appropriate file
 
 write.table(allMeans,"TidySamsungData.txt")
