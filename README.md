@@ -20,9 +20,11 @@ The instructions for this assignment force us to make some assumptions about whi
 We are asked to look for only variables that reflect the "mean" and "standard deviation" for each set of measurements. 
 
 **Assumption 1:**
+
 According to "features_info.txt", the XYZ measurements for each read has been combined into magnitude variables (labeled with "Mag"). Therefore, to get the mean and std for all measurements, all we need are the mean and std of the magnitude data and not each XYZ mean & std variable. **This means my regular expression looking for the variables I want to retain only looks for these kinds of variables.** I noticed that each of these Mag variables ended in eitehr mean() or std() and NOT mean()-[XYZ], etc. So I chose to look only for those variables, along with my "subjectid" variable and "activities" variable that were added to the dataset earlier in the script.
 
 **Assumption 2:**
+
 My understanding is that meanFreq variables should not be included. David Hood (whose article is linked to in a pinned discussion topic for week 4) thinks that either keeping meanFreq or getting rid of it is a fine way to interpret the instructiosn. **So keep in mind that I have specifically decided not to include meanFreq.**
 
 Source: https://thoughtfulbloke.wordpress.com/2015/09/09/getting-and-cleaning-the-assignment/
