@@ -25,38 +25,38 @@ From the original "features_info" for the originating data: "Subsequently, the b
 
 **Note3:** Finally, while some variables end in "mean" and others in "std," each numerical value in the resulting dataset represents the mean of all calculations for the subject who performed the observed action. For instance, there were many original observations of subject "1" performing the activity "walkingdownstairs," and the mean and std was calculated for each of those actions, but THIS dataset means all of those original observations into one value. So we are literally seeing the "mean of the mean" and the "mean of the std" in the final dataset.
 
-**V3 timedbodilyaccelerationmagnitudemean
+**V3 timedbodilyaccelerationmagnitudemean**
 
-**V4 timedbodilyaccelerationmagnitudestd
+**V4 timedbodilyaccelerationmagnitudestd**
 
-**V5 timedgravityaccelerationmagnitudemean
+**V5 timedgravityaccelerationmagnitudemean**
 
-**V6 timedgravityaccelerationmagnitudestd
+**V6 timedgravityaccelerationmagnitudestd**
 
-**V7 timedbodilyaccelerationjerkmagnitudemean
+**V7 timedbodilyaccelerationjerkmagnitudemean**
 
-**V8 timedbodilyaccelerationjerkmagnitudestd
+**V8 timedbodilyaccelerationjerkmagnitudestd**
 
-**V9 timedbodilygyroscopicmagnitudemean
+**V9 timedbodilygyroscopicmagnitudemean**
 
-**V10 timedbodilygyroscopicmagnitudestd
+**V10 timedbodilygyroscopicmagnitudestd**
 
-**V11 timedbodilygyroscopicjerkmagnitudemean
+**V11 timedbodilygyroscopicjerkmagnitudemean**
 
-**V12 timedbodilygyroscopicjerkmagnitudestd
+**V12 timedbodilygyroscopicjerkmagnitudestd**
 
-**V13 frequencybodilyaccelerationmagnitudemean
+**V13 frequencybodilyaccelerationmagnitudemean**
 
-**V14 frequencybodilyaccelerationmagnitudestd
+**V14 frequencybodilyaccelerationmagnitudestd**
 
-**V15 frequencybodilyaccelerationjerkmagnitudemean
+**V15 frequencybodilyaccelerationjerkmagnitudemean**
 
-**V16 frequencybodilyaccelerationjerkmagnitudestd
+**V16 frequencybodilyaccelerationjerkmagnitudestd**
 
-**V17 frequencybodilygyroscopicmagnitudemean
+**V17 frequencybodilygyroscopicmagnitudemean**
 
-**V18 frequencybodilygyroscopicmagnitudestd
+**V18 frequencybodilygyroscopicmagnitudestd**
 
-**V19 frequencybodilygyroscopicjerkmagnitudemean
+**V19 frequencybodilygyroscopicjerkmagnitudemean**
 
 **V20 frequencybodilygyroscopicjerkmagnitudestd**
