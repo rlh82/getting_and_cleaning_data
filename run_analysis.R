@@ -79,5 +79,5 @@ colnames(allData)<-sub("\\()","",colnames(allData))
 allMeans<-allData %>% group_by(subjectid,activities) %>% summarize_each(funs(mean))
 
 # 14. and then we output the appropriate file
-
-write.table(allMeans,"TidySamsungData.txt")
+# write.table(allMeans,"TidySamsungData.txt")  ((<- decided to View data instead of writing it to the user's computer))
+View(allMeans)
