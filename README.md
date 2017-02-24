@@ -34,4 +34,12 @@ Note: A VERSION OF THESE DETAILS CAN ALSO BE FOUND AS COMMENTS DIRECTLY WITHIN T
 3. Next I loaded in the large datasets: X_test.txt and X_train.txt
 4. I chose to immediately add the variables defined in features to each dataset
 5. I then brought in  the y_train.txt and x_train.txt files into the datasets as variables called "activities"
-6. 
+6. Then I did the same thing for the "subject" data for both test and train
+7. Now that I have two datasets with identical variables, I use rbind() to bring them together into one dataset called "allData"
+8. Next, I subset allData to include only the variables I desire. **It's important you read the two "assumptions" earlier in this README in order to understand the decisions I made that resulted in 20 variables**
+9. I then pulled the activity descriptors from "activity_labelts.txt" into a separate object, mapped those descriptors to the corresponding activity identifiers in the allData$activities variable, and then tidied up the names of the activities in case anyone ever wants to use these as variables themselves.
+10. Unfortunately, step 9 results in changing $activites from a factor to a character vector, so I have to reclass this variable as a factor in order for later functions to work.
+11. Then I decided to get rid of any objects I don't need so as not to clutter up the workspace once the script is complete
+12. Next, I want to make the measurement variables conform to tidy data standards. My understanding is that we should not use capital letters, spaces, underscores, or dashes in tiny variables, and that we should avoid as many abbreviations as possible. This results in some pretty long variable names. I'm not thrilled with that, but so be it.
+13. Almost done! Now we finally do the work of condensing the information in the measurement variables down in a new dataset called "allMeans." To do this, we pass the allData dataset to "group_by" (and grouping by subjectid and activities, in that order), then passing that grouped dataset to "summarize_each" which performs the function "mean" on each grouped chunk of data. This results in a dataset that only shows each activity once per subject, and takes the mean of all of the observations related to that subject+activity from the larger dataset.
+14. Finally, we write the resulting dataset to a file called "TidySamsingdata.txt" 
